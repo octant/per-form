@@ -28,6 +28,10 @@
     "trailingComma": "es5"
   },
   "name": "@octant/per-form",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/octant/per-form.git"
+  },
   "author": "octant",
   "module": "dist/per-form.esm.js",
   "devDependencies": {
