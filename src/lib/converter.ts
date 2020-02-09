@@ -39,7 +39,7 @@ const _converters: IConverters = {
   date: (key: string, values: IForm, defaultNull: any): Date | string => {
     const date = new Date(values[key]);
     return values[key] === ''
-      ? defaultNull
+      ? defaultNull !== undefined
       : isValidDate(date)
       ? date
       : values[key];
@@ -47,7 +47,7 @@ const _converters: IConverters = {
 
   number: (key: string, values: IForm, defaultNull: any): number | string => {
     return values[key] === ''
-      ? defaultNull
+      ? defaultNull !== undefined
       : /^[0-9.]+$/.test(values[key])
       ? /\./.test(values[key])
         ? parseFloat(values[key])
