@@ -25,34 +25,49 @@ export function convert({
     ...converterWithType,
   };
 
-  return mergedConverters[type]
+  return mergedConverters[type] !== undefined
     ? mergedConverters[type](
         key,
         values,
         defaultNull,
         dirtyFields[key] || false
       )
+    : values[key] === '' && defaultNull !== undefined
+    ? defaultNull
     : values[key];
 }
 
 const _converters: IConverters = {
   date: (key: string, values: IForm, defaultNull: any): Date | string => {
     const date = new Date(values[key]);
-    return values[key] === ''
-      ? defaultNull !== undefined
-      : isValidDate(date)
-      ? date
-      : values[key];
+
+    if (values[key] === '') {
+      if (defaultNull !== undefined) {
+        return defaultNull;
+      } else {
+        return values[key];
+      }
+    } else {
+      if (isValidDate(date)) {
+        return date;
+      } else {
+        return values[key];
+      }
+    }
   },
 
   number: (key: string, values: IForm, defaultNull: any): number | string => {
-    return values[key] === ''
-      ? defaultNull !== undefined
-      : /^[0-9.]+$/.test(values[key])
-      ? /\./.test(values[key])
-        ? parseFloat(values[key])
-        : parseInt(values[key])
-      : values[key];
+    if (values[key] === '' && defaultNull !== undefined) {
+      return defaultNull;
+    } else {
+      if (/^[0-9.]+$/.test(values[key])) {
+        return parseFloat(values[key]);
+      } else if (/^[0-9]+$/.test(values[key])) {
+        return parseInt(values[key]);
+      } else {
+        return values[key];
+      }
+    }
   },
 
   text: (key: string, values: IForm, defaultNull: any): number | string => {

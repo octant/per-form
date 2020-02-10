@@ -3,8 +3,6 @@ import { useSchema } from '../';
 import { schemaDefinition } from './converter-schema';
 import { IForm, IConverters } from '../../.';
 
-// const schema = useSchema(schemaDefinition);
-
 describe('convert number', () => {
   const schema = useSchema(schemaDefinition);
 
@@ -123,5 +121,21 @@ describe('isValidDate', () => {
 
   it('should return false when an invalid date is passed', () => {
     expect(isValidDate(invalidDate)).toBe(false);
+  });
+});
+
+describe('no default parser', () => {
+  const schema = useSchema(schemaDefinition);
+
+  it('should return true when set to true', () => {
+    expect(convert({ key: 'agree', values: { agree: true }, schema })).toBe(
+      true
+    );
+  });
+
+  it('should convert an empty string to default null value', () => {
+    expect(convert({ key: 'agree', values: { agree: '' }, schema })).toBe(
+      false
+    );
   });
 });

@@ -92,6 +92,7 @@ export const schemaDefinition: ProgramSchemaDefinition = {
   agree: {
     type: 'checkbox',
     required: true,
+    defaultNull: false,
     label: 'I agree to the terms and conditions',
     custom: ({ agree }: IProgram) => agree === 'true',
     message: 'You must agree to the terms and conditions',
