@@ -10,7 +10,7 @@ const App = () => {
   const vehicleFormRef = React.createRef<IFormControls>();
   const [isValid, setIsValid] = React.useState(false);
 
-  function handleChange(name: string, values: any) {
+  function handleChange(_: string, values: any) {
     setIsValid(values.isValid);
   }
 
@@ -33,7 +33,7 @@ const App = () => {
         form={schema.new}
         onChange={handleChange}
         ref={vehicleFormRef}
-        initialValues={{ make: 'ford' }}
+        initialValues={{ make: 'Ford', model: 'fusion', year: 2011 }}
       />
       <button onClick={handleSubmit} disabled={!isValid}>
         Submit

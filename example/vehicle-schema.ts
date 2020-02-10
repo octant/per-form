@@ -5,6 +5,7 @@ export interface IVehicle {
   model: string;
   year: number;
   color: string;
+  hasLoan: boolean;
 }
 
 type VehicleSchemaDefinition = SchemaDefinition<IVehicle>;
@@ -60,6 +61,13 @@ export const schemaDefinition: VehicleSchemaDefinition = {
         ? defaultNull
         : trimmedValue;
     },
+  },
+
+  hasLoan: {
+    type: 'checkbox',
+    label: 'Do you have a loan for this vehicle?',
+    defaultValue: false,
+    defaultNull: false,
   },
 };
 
