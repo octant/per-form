@@ -34,6 +34,7 @@ const App = () => {
         onChange={handleChange}
         ref={vehicleFormRef}
         initialValues={{ make: 'Ford', model: 'fusion', year: 2011 }}
+        fieldProps={{ color: { placeholder: 'color' } }}
       />
       <button onClick={handleSubmit} disabled={!isValid}>
         Submit

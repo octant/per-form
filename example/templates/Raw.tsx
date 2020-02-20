@@ -31,6 +31,7 @@ export default function Raw(props: IField): React.ReactElement {
     touched,
     type,
     value,
+    ...rest
   } = props;
   const options = props.options ? props.options : [];
   const isValid: boolean = errors ? errors.length === 0 : true;
@@ -66,6 +67,7 @@ export default function Raw(props: IField): React.ReactElement {
                 onChange={handleCheck}
                 onFocus={handleFocus}
                 type={type}
+                {...rest}
               />{' '}
               {label}{' '}
               <ValidField and={[isValid, value !== '']} or={[isDirty]} />
@@ -100,6 +102,7 @@ export default function Raw(props: IField): React.ReactElement {
                       onChange={handleChange}
                       type={type}
                       value={optValue}
+                      {...rest}
                     />{' '}
                     {text}
                   </label>
@@ -124,6 +127,7 @@ export default function Raw(props: IField): React.ReactElement {
               onChange={handleChange}
               onFocus={handleFocus}
               value={value}
+              {...rest}
             >
               {options.map(
                 (
@@ -156,6 +160,7 @@ export default function Raw(props: IField): React.ReactElement {
               onFocus={handleFocus}
               type={type}
               value={value}
+              {...rest}
             />{' '}
             <ValidField and={[isValid, value !== '']} or={[isDirty]} />
             <div style={errorStyle}>

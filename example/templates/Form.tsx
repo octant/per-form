@@ -14,6 +14,7 @@ interface Props<T> {
   initialValues?: IForm;
   name: string;
   onChange?: (name: string, values: any) => void;
+  fieldProps?: { [key: string]: any };
 }
 
 export interface IFormControls {
@@ -24,7 +25,14 @@ export interface IFormControls {
 }
 
 function Form<T>(
-  { initialValues, form, name, onChange, converters = {} }: Props<T>,
+  {
+    initialValues,
+    fieldProps,
+    form,
+    name,
+    onChange,
+    converters = {},
+  }: Props<T>,
   ref: React.Ref<any>
 ): React.ReactElement {
   const {
@@ -76,6 +84,7 @@ function Form<T>(
         Template={Raw}
         touched={touched}
         values={values}
+        fieldProps={fieldProps}
       />
     </div>
   );

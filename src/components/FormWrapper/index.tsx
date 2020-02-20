@@ -19,6 +19,7 @@ type Props<T> = {
   Template: React.FC<IField>;
   touched?: IIs;
   values: IForm;
+  fieldProps?: { [key: string]: any };
 };
 
 export default function FormWrapper<T>({
@@ -31,6 +32,7 @@ export default function FormWrapper<T>({
   Template,
   touched,
   values,
+  fieldProps = {},
 }: Props<T>): React.ReactElement {
   return (
     <>
@@ -50,6 +52,7 @@ export default function FormWrapper<T>({
             touched={touched && touched[name]}
             type={type}
             value={values[name]}
+            {...(fieldProps[name] && fieldProps[name])}
           />
         );
       })}
