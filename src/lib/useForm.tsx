@@ -52,8 +52,8 @@ export default function useForm<T extends IForm>({
   function defaultValues(): Form<T> {
     return Object.entries(fullSchema).reduce((prev, [k, v]: [string, any]) => {
       const defaultValue = passedValues[k] || v.defaultValue || '';
-      const cleanValue = defaultValue === v.defaultNull ? '' : defaultValue;
-      return { ...prev, [k]: cleanValue };
+
+      return { ...prev, [k]: defaultValue };
     }, {} as Form<T>);
   }
 
